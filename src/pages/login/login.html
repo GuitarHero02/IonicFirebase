@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
 	<ion-navbar>
 		<button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
@@ -15,7 +15,17 @@
 	<form #loginForm="ngForm" novalidate>
 		<ion-list no-lines>
 			<ion-item>
-				<ion-label stacked color="primary">Username</ion-label>
+				<ion-label stacked color="primary">Email Address</ion-label>
+				<ion-input [(ngModel)]="login.email" name="email" type="text" #email="ngModel" spellcheck="false" autocapitalize="off"
+					required>
+				</ion-input>
+			</ion-item>
+			<p ion-text [hidden]="email.valid || submitted == false" color="danger" padding-left>
+				Email is required
+			</p>
+
+			<ion-item>
+				<ion-label stacked color="primary">UserName</ion-label>
 				<ion-input [(ngModel)]="login.username" name="username" type="text" #username="ngModel" spellcheck="false" autocapitalize="off"
 					required>
 				</ion-input>
@@ -39,9 +49,40 @@
 				<button ion-button (click)="onLogin(loginForm)" type="submit" block>Login</button>
 			</ion-col>
 			<ion-col>
+				<button ion-button (click)="facebookLogin()" type="submit" block>FaceBookLogin</button>
+			</ion-col>
+			<ion-col>
+				<button ion-button (click)="googleLogin()" type="submit" block>GoogleLogin</button>
+			</ion-col>
+			<ion-col>
 				<button ion-button (click)="onSignup()" color="light" block>Signup</button>
 			</ion-col>
 		</ion-row>
 	</form>
 
+</ion-content> -->
+<ion-content class="background"></ion-content>
+<ion-content>
+	<ion-card>
+		<ion-card-header>
+			Login Form
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list no-line>
+				<ion-item>
+					<ion-input type="text" name="email" placeholder="Email" [(ngModel)]="login.email"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" name="password" placeholder="Password" [(ngModel)]="login.password"></ion-input>
+				</ion-item>
+				<a (click)="passwordreset()">Forgot your login detail? <b>Get help signing in</b></a>
+				<button ion-button block outline color="light" (click)="signin()">Log in</button>
+				<p>OR</p>
+				<button ion-button block color="facebook">
+					<ion-icon name="logo-facebook"></ion-icon> Login with facebook
+				</button>
+				</ion-list>
+		</ion-card-content>
+	</ion-card>
+	<button class="bottom" ion-button clear full color="light">Don't have an acoount? Sign up</button>
 </ion-content>

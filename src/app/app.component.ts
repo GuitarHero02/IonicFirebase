@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Events, MenuController, Nav, Platform } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Storage } from '@ionic/storage';
 
 import { AboutPage } from '../pages/about/about';
@@ -66,7 +66,8 @@ export class ConferenceApp {
     public platform: Platform,
     public confData: ConferenceData,
     public storage: Storage,
-    public splashScreen: SplashScreen
+    public splashScreen: SplashScreen,
+    private afAuth: AngularFireAuth
   ) {
 
     // Check if the user has already seen the tutorial
@@ -90,6 +91,26 @@ export class ConferenceApp {
     this.enableMenu(true);
 
     this.listenToLoginEvents();
+    this.initializeApp();
+  }
+
+  initializeApp(){
+    // Check if the user has already seen the tutorial
+    this.storage.get('hasSeenTutorial')
+      .then((hasSeenTutorial) => {
+        if (hasSeenTutorial) {
+          this.afAuth.authState.subscribe(auth => {
+            if(auth){
+              this.rootPage = TabsPage;
+            } else {
+              this.rootPage = LoginPage;
+            }
+          });
+        } else {
+          this.rootPage = TutorialPage;
+        }
+        this.platformReady()
+      });
   }
 
   openPage(page: PageInterface) {

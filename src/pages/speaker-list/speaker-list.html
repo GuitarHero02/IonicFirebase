@@ -13,8 +13,9 @@
       <ion-row align-items-stretch>
 
         <ion-col col-12 col-md-6 align-self-stretch align-self-center *virtualItem="let speaker" approxItemHeight="457px">
-
+<!--
           <ion-card class="speaker-card">
+            
             <ion-card-header>
               <button ion-item detail-none (click)="goToSpeakerDetail(speaker)">
                 <ion-avatar item-start>
@@ -56,8 +57,22 @@
                 </button>
               </ion-col>
             </ion-row>
+         
+          </ion-card> -->
 
-          </ion-card>
+          <ion-card class="blurred-title-card">
+              <div class="card-image" [style.background-image]="'url(' + speaker.profilePic + ')'" ></div>
+            
+              <div class="card-title-background">
+                <span [style.background-image]="'url(' + speaker.profilePic + ')'"></span>
+              </div>
+            
+              <div class="card-title">
+                <p>
+                  {{speaker.name}}
+                </p>
+              </div>
+            </ion-card>
 
         </ion-col>
       </ion-row>

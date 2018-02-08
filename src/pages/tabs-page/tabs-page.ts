@@ -6,6 +6,10 @@ import { AboutPage } from '../about/about';
 import { MapPage } from '../map/map';
 import { SchedulePage } from '../schedule/schedule';
 import { SpeakerListPage } from '../speaker-list/speaker-list';
+import { ChatsPage } from '../chats/chats';
+import { GroupsPage } from '../groups/groups';
+import { ProfilePage } from '../profile/profile';
+
 
 @Component({
   templateUrl: 'tabs-page.html'
@@ -16,6 +20,9 @@ export class TabsPage {
   tab2Root: any = SpeakerListPage;
   tab3Root: any = MapPage;
   tab4Root: any = AboutPage;
+  tab5: any = ChatsPage;
+  tab6: any = GroupsPage;
+  tab7: any = ProfilePage;
   mySelectedIndex: number;
 
   constructor(navParams: NavParams) {
